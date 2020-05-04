@@ -14,8 +14,6 @@ export class ProductListComponent implements OnInit {
   showImage: boolean = false;
   _listFilter: string;
 
-
-
   get listFilter(): string {
     return this._listFilter;
   }
@@ -97,5 +95,10 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     console.log('In OnInit...');
+  }
+
+  onRatingClicked(message: string): void {
+    console.log(`The message ith: ${message}`)
+    this.pageTitle = `Product List: ${message}`;
   }
 }

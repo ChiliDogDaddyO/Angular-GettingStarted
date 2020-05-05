@@ -16,6 +16,7 @@ export class ProductListComponent implements OnInit {
   _listFilter: string;
   filteredProducts: IProduct[];
   products: IProduct[] = [];
+  errorMessage: string;
 
   constructor(private productService: ProductService) {
     // this.listFilter = 'cart';
@@ -23,7 +24,10 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     console.log('In OnInit...');
-    this.products = this.productService.getProducts();
+    this.productService.getProducts().subscribe({
+      next: products => this.products = products,
+      error: err => this.errorMessage = err
+    });
     this.filteredProducts = this.products;
   }
 
